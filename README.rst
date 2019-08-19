@@ -159,6 +159,17 @@ Explanation:
 
 **args** contains the arguments to be passed to the method
 
+Contribution Guidelines
+-----------------------
+
+#. We welcome all the enhancements from everyone although we request the developer to follow some guidelines while interacting with the ``Ansible commvault module`` codebase.
+
+#. Before adding any enhancements/bug-fixes, we request you to open an Issue first.
+
+#. The core team will go over the Issue and notify if it is required or already been worked on.
+
+#. If the Issue is approved, the contributor can then make the changes to their fork and open a pull request.
+
 Coding Considerations
 *********************
 
@@ -167,6 +178,15 @@ Coding Considerations
 - The code should be formatted using **autopep8** with line-length set to **119** instead of default **79**.
 - All changes and any new methods/classes should be properly documented.
 - The docstrings should be of the same format as existing docs.
+
+Code of Conduct
+***************
+
+Everyone interacting in the **Ansible commvault module** project's codebases, issue trackers,
+chat rooms, and mailing lists is expected to follow the
+`PyPA Code of Conduct`_.
+
+.. _PyPA Code of Conduct: https://www.pypa.io/en/latest/code-of-conduct/
 
 License
 -------
