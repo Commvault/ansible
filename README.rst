@@ -101,7 +101,7 @@ Using Ansible commvault module
 ::
 
  - name: Restore
-      commvault:
+   commvault:
         operation: "restore_in_place"
         entity_type: subclient
         commcell: "{{ commcell }}"
@@ -114,13 +114,13 @@ Using Ansible commvault module
         args: {
         paths: ['path']
         }
-    register: restore_job
+   register: restore_job
           
 **Wait for the restore job to complete:**
 ::
 
   - name: wait for restore job to complete
-      commvault:
+    commvault:
         operation: "wait_for_completion"
         entity_type: "job"
         commcell: "{{ commcell }}"
