@@ -1,0 +1,50 @@
+---
+- name: Commvault Ansible
+  gather_facts: no
+  hosts: localhost
+  connection: local
+
+  vars:
+    webconsole_hostname: 'hostname'
+    commcell_username: 'username'
+    commcell_password: 'password'
+    client: 'sample client'
+
+  tasks:
+    - name: Commvault commcell initialization
+      block:
+        - name: Login
+          commvault:
+            operation: LOGIN
+            entity: {
+            webconsole_hostname: "{{ webconsole_hostname }}",
+            commcell_username: "{{ commcell_username }}",
+            commcell_password: "{{ commcell_password }}"
+            }
+          register: commcell
+        - debug:
+            msg: "Login is done successfully"
+      rescue:
+        - debug:
+            msg: 'Login failed'
+
+    - name: changing subclient description
+      commvault:
+        operation: "description"
+        entity_type: subclient
+        commcell: "{{ commcell }}"
+        entity: {
+        client: "{{ client }}",
+        agent: "file system",
+        backupset: "defaultbackupset",
+        subclient: "default"
+        }
+        args: {
+          "value": "setting subclient description"
+        }
+      register: output
+
+    - debug:
+        msg: "Successful {{ output.output }}"
+
+...
