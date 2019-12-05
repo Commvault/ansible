@@ -196,7 +196,7 @@ from ansible.module_utils.basic import AnsibleModule
 from cvpysdk.commcell import Commcell
 
 
-client = clients = agent = agents = instance = instances = backupset = backupsets = subclient = subclients = None
+commcell = client = clients = agent = agents = instance = instances = backupset = backupsets = subclient = subclients = None
 
 job = jobs = None
 
@@ -240,8 +240,9 @@ def create_object(entity):
             }
 
     """
-    global client, clients, agent, agents, instance, instances, backupset, backupsets, subclient, subclients, result
+    global commcell, client, clients, agent, agents, instance, instances, backupset, backupsets, subclient, subclients, result
 
+    commcell = commcell_object
     if 'client' in entity:
         clients = commcell_object.clients
         client = clients.get(entity['client'])
@@ -273,7 +274,7 @@ def main():
     """Main method for this module"""
     module_args = dict(
         operation=dict(type='str', required=True),
-        entity=dict(type="dict", required=True),
+        entity=dict(type="dict", default={}),
         entity_type=dict(type='str', default=''),
         commcell=dict(type='dict', default={}),
         args=dict(type='dict', default={})
@@ -323,10 +324,12 @@ def main():
 
         output = eval(statement)
 
-        if type(output).__module__ == 'builtins':
+        if type(output).__module__ in ['builtins', '__builtin__']:
             result['output'] = output
-        else:
+        elif ":" in str(output):
             result['output'] = str(output).split(': ')[1].strip('"').strip("'")
+        else:
+            result['output'] = output
 
     module.exit_json(**result)
 
