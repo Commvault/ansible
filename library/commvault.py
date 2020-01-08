@@ -240,7 +240,7 @@ def create_object(entity):
             }
 
     """
-    global commcell, client, clients, agent, agents, instance, instances, backupset, backupsets, subclient, subclients, result
+    global commcell, client, clients, agent, agents, instance, instances, backupset, backupsets, subclient, subclients, result, clientgroup, clientgroups
 
     commcell = commcell_object
     if 'client' in entity:
@@ -268,6 +268,10 @@ def create_object(entity):
 
         jobs = commcell_object.job_controller
         job = jobs.get(entity['job_id'])
+
+    if 'clientgroup' in entity:
+        clientgroups = commcell_object.client_groups
+        clientgroup = clientgroups.get(entity['clientgroup'])
 
 
 def main():
