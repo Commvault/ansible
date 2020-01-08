@@ -335,6 +335,9 @@ def main():
         else:
             result['output'] = output
 
+        if obj_name == 'client' and 'prop' in method:
+            result['ansible_facts'] = client.properties
+
     module.exit_json(**result)
 
 
