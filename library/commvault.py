@@ -39,7 +39,7 @@ author: "Commvault Systems, Inc."
 
 options:
 
-    option_name: operation
+    operation:
         description:
             - operation to be performed
             - corresponds to method name in CVPySDK modules
@@ -51,9 +51,9 @@ options:
             - Login
             - CVPySDK methods like backup, restore_in_place
 
-        type: "string"
+        type: str
 
-    option_name: entity
+    entity:
         description:
             -  contain basic CVPySDK inputs
 
@@ -70,15 +70,15 @@ options:
             - subclient
             - job_id
 
-        type: "dict"
+        type: dict
 
-    option_name: commcell
+    commcell:
         description:
             -   mandatory to perform any tasks, when performing login operation commcell is registered
 
         required: true
 
-    option_name: entity_type
+    entity_type:
         description:
             -   corresponds to baisc CVPySDK class
 
@@ -96,9 +96,9 @@ options:
             - Subclient
             - Job
 
-        type: "string"
+        type: str
 
-    option_name: args
+    args:
         description:
             -   arguments to be passed to the CVPySDK methods
 
@@ -106,7 +106,7 @@ options:
 
         default: {}
 
-        type: "dict"
+        type: dict
 
 requirements:
 
