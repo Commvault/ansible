@@ -25,7 +25,7 @@ DOCUMENTATION = '''
 
 module: commvault
 
-short description: To perform commvault operations
+short_description: To perform commvault operations
 
 description:
 
