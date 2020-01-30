@@ -194,6 +194,7 @@ sample: {
 
 from ansible.module_utils.basic import AnsibleModule
 from cvpysdk.commcell import Commcell
+from cvpysdk.job import Job
 
 
 commcell = client = clients = agent = agents = instance = instances = backupset = backupsets = subclient = subclients = None
@@ -243,8 +244,10 @@ def create_object(entity):
     global commcell, client, clients, agent, agents, instance, instances, backupset, backupsets, subclient, subclients, result, clientgroup, clientgroups
 
     commcell = commcell_object
+    clients = commcell_object.clients
+    
     if 'client' in entity:
-        clients = commcell_object.clients
+
         client = clients.get(entity['client'])
         agents = client.agents
 
@@ -330,10 +333,10 @@ def main():
 
         if type(output).__module__ in ['builtins', '__builtin__']:
             result['output'] = output
-        elif ":" in str(output):
-            result['output'] = str(output).split(': ')[1].strip('"').strip("'")
+        elif isinstance(output, Job):
+            result['output'] = output.job_id
         else:
-            result['output'] = output
+            result['output'] = str(output)
 
     module.exit_json(**result)
 
