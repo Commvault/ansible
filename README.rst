@@ -194,7 +194,7 @@ License
 
 About Commvault
 ---------------
-.. image:: https://upload.wikimedia.org/wikipedia/en/thumb/1/12/Commvault_logo.png/150px-Commvault_logo.png
+.. image:: https://upload.wikimedia.org/wikipedia/en/thumb/2/2f/Commvault_logo.svg/320px-Commvault_logo.svg.png
     :align: center
 
 |
