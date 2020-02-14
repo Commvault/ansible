@@ -16,9 +16,10 @@ Ansible Commvault module can be used in playbooks to automate commvault operatio
 
 
 
-Ansible is supported only for Linux machines
 
 Commvault module uses `CVPySDK <https://github.com/CommvaultEngg/cvpysdk>`_ to perform operations
+
+All agents supported by CVPySDK are supported by commvault ansible module
 
 CVPySDK, in turn, uses Commvault REST API to perform operations on a Commcell via WebConsole.
 
