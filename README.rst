@@ -138,11 +138,17 @@ Explanation:
 **entity_type** corresponds to baisc CVPySDK class, available options are
 
 - Commcell
+- Clients
 - Client
+- Clientgroups
 - Clientgroup
+- Agents
 - Agent
+- Instances
 - Instance
+- Backupsets
 - Backupset
+- Subclients
 - Subclient
 - Job
 
