@@ -88,11 +88,17 @@ options:
 
         choices:
             - Commcell
+            - Clients
             - Client
+            - Clientgroups
             - Clientgroup
+            - Agents
             - Agent
+            - Instances
             - Instance
+            - Backupsets
             - Backupset
+            - Subclients
             - Subclient
             - Job
 
@@ -199,7 +205,7 @@ from cvpysdk.job import Job
 
 commcell = client = clients = agent = agents = instance = instances = backupset = backupsets = subclient = subclients = None
 
-job = jobs = None
+clientgroups = clientgroup = job = jobs = None
 
 result = {}
 
