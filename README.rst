@@ -28,7 +28,7 @@ Requirements
 ------------
 
 - Ansible
-- Python 2.7 or above
+- Python 3 or above
 - `CVPySDK <https://github.com/CommvaultEngg/cvpysdk>`_
 - Commvault Software v11 SP16 or later release with WebConsole installed
 
