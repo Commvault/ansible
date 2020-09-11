@@ -267,7 +267,7 @@ def create_object(entity):
 
             if 'instance' in entity:
                 instance = instances.get(entity['instance'])
-                subclients = instances.subclients
+                subclients = instance.subclients
 
             if 'backupset' in entity:
                 backupset = backupsets.get(entity['backupset'])
