@@ -267,13 +267,14 @@ def create_object(entity):
 
             if 'instance' in entity:
                 instance = instances.get(entity['instance'])
+                subclients = instances.subclients
 
             if 'backupset' in entity:
                 backupset = backupsets.get(entity['backupset'])
                 subclients = backupset.subclients
 
-                if 'subclient' in entity:
-                    subclient = subclients.get(entity['subclient'])
+            if subclients and 'subclient' in entity:
+                subclient = subclients.get(entity['subclient'])
 
     if 'job_id' in entity:
         job = jobs.get(entity['job_id'])
