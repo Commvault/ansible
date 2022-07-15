@@ -130,6 +130,20 @@ Using Ansible commvault module
         }
     register: restore_status
 
+**Get storage pool properties:**
+::
+
+  - name: "get storage pool properties"
+    commvault:
+        operation: "storage_pool_properties"
+        entity_type: storagepool
+        commcell: "{{ commcell }}"
+        entity: {
+        "storage_pool": "dedicated cl2"
+        }
+    register: storage_pool_props
+
+
 Explanation:
 ------------
 
@@ -151,6 +165,12 @@ Explanation:
 - Subclients
 - Subclient
 - Job
+- MediaAgents
+- MediaAgent
+- StoragePools
+- StoragePool
+- DiskLibraries
+- DiskLibrary
 
 **commcell** is mandatory to perform any tasks, when performing login operation commcell is registered and can later be used in other tasks
 
@@ -163,6 +183,9 @@ Explanation:
 - backupset
 - subclient
 - job_id
+- media_agent
+- storage_pool
+- disk_library
 
 **args** contains the arguments to be passed to the method
 
@@ -201,7 +224,7 @@ License
 
 About Commvault
 ---------------
-.. image:: https://commvault.github.io/Automation/logo.png
+.. image:: https://commvault.github.io/cvpysdk/logo.png
     :align: center
 
 |

@@ -18,7 +18,7 @@
 
 
 ANSIBLE_METADATA = {
-    'metadata_version': '11.16.0'
+    'metadata_version': '11.28.0'
 }
 
 DOCUMENTATION = '''
@@ -69,6 +69,9 @@ options:
             - backupset
             - subclient
             - job_id
+            - media_agent
+            - storage_pool
+            - disk_library
 
         type: dict
 
@@ -80,7 +83,7 @@ options:
 
     entity_type:
         description:
-            -   corresponds to baisc CVPySDK class
+            -   corresponds to basic CVPySDK class
 
         required: false
 
@@ -101,6 +104,12 @@ options:
             - Subclients
             - Subclient
             - Job
+            - MediaAgents
+            - MediaAgent
+            - StoragePools
+            - StoragePool
+            - DiskLibraries
+            - DiskLibrary
 
         type: str
 
@@ -184,6 +193,18 @@ EXAMPLES = '''
             }
         register: restore_status
 
+**Get storage pool properties:**
+
+    - name: "get storage pool properties"
+        commvault:
+            operation: "storage_pool_properties"
+            entity_type: storagepool
+            commcell: "{{ commcell }}"
+            entity: {
+            "storage_pool": "dedicated cl2"
+            }
+        register: storage_pool_props
+
 '''
 
 RETURN = '''
@@ -206,6 +227,8 @@ from cvpysdk.job import Job
 commcell = client = clients = agent = agents = instance = instances = backupset = backupsets = subclient = subclients = None
 
 clientgroups = clientgroup = job = jobs = None
+
+mediaagents = mediaagent = storagepools = storagepool = disklibraries = disklibrary = None
 
 result = {}
 
@@ -249,11 +272,15 @@ def create_object(entity):
     """
     global commcell, client, clients, agent, agents, instance, instances, backupset, backupsets, subclient, subclients, result, clientgroup, clientgroups
     global job, jobs
+    global mediaagents, mediaagent, storagepools, storagepool, disklibraries, disklibrary
     
     commcell = commcell_object
     clients = commcell_object.clients
     clientgroups = commcell_object.client_groups
     jobs = commcell_object.job_controller
+    mediaagents = commcell_object.media_agents
+    storagepools = commcell_object.storage_pools
+    disklibraries = commcell_object.disk_libraries
     
     if 'client' in entity:
 
@@ -281,6 +308,15 @@ def create_object(entity):
         
     if 'clientgroup' in entity:
         clientgroup = clientgroups.get(entity['clientgroup'])
+
+    if 'media_agent' in entity:
+        mediaagent = mediaagents.get(entity['media_agent'])
+
+    if 'storage_pool' in entity:
+        storagepool = storagepools.get(entity['storage_pool'])
+
+    if 'disk_library' in entity:
+        disklibrary = disklibraries.get(entity['disk_library'])
 
 
 def main():
