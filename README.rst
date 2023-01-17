@@ -82,6 +82,22 @@ Using Ansible commvault module
             }
         register: commcell
 
+**Force HTTPS login using self-signed certificate**
+::
+
+  - name: Login
+    commvault:
+        operation: login
+        entity: {
+        webconsole_hostname: "{{ webconsole_hostname }}",
+        commcell_username: "{{ commcell_username }}",
+        commcell_password: "{{ commcell_password }}",
+        force_https: True,
+        certificate_path: '/tmp/certificates'
+        }
+    register: commcell
+
+
 **Run backup for a subclient:**
 ::
 
