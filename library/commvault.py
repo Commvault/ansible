@@ -148,6 +148,20 @@ EXAMPLES = '''
             }
         register: commcell
 
+**Force HTTPS login using self-signed certificate**
+
+      - name: Login
+        commvault:
+            operation: login
+            entity: {
+            webconsole_hostname: "{{ webconsole_hostname }}",
+            commcell_username: "{{ commcell_username }}",
+            commcell_password: "{{ commcell_password }}",
+            force_https: True,
+            certificate_path: '/tmp/certificates'
+            }
+        register: commcell
+
 **Run backup for a subclient:**
 
       - name: Backup
@@ -244,13 +258,20 @@ def login(module):
     global commcell_object
 
     if module.get('authtoken'):
-        commcell_object = Commcell(module['webconsole_hostname'], authtoken=module['authtoken'])
+        commcell_object = Commcell(
+            module['webconsole_hostname'], 
+            authtoken=module['authtoken'],
+            force_https=module.get('force_https', False),
+            certificate_path=module.get('certificate_path')
+        )
 
     else:
         commcell_object = Commcell(
             webconsole_hostname=module['webconsole_hostname'],
             commcell_username=module['commcell_username'],
-            commcell_password=module['commcell_password']
+            commcell_password=module['commcell_password'],
+            force_https=module.get('force_https', False),
+            certificate_path=module.get('certificate_path')
         )
 
 
